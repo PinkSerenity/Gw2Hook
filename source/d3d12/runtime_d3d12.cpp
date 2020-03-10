@@ -1551,15 +1551,6 @@ void reshade::d3d12::runtime_d3d12::render_imgui_draw_data(ImDrawData *draw_data
 #if RESHADE_DEPTH
 void reshade::d3d12::runtime_d3d12::draw_depth_debug_menu(buffer_detection_context &tracker)
 {
-	if (!ImGui::CollapsingHeader("Depth Buffers", ImGuiTreeNodeFlags_DefaultOpen))
-		return;
-
-	if (_has_high_network_activity)
-	{
-		ImGui::TextColored(ImColor(204, 204, 0), "High network activity discovered.\nAccess to depth buffers is disabled to prevent exploitation.");
-		return;
-	}
-
 	bool modified = false;
 	modified |= ImGui::Checkbox("Use aspect ratio heuristics", &_filter_aspect_ratio);
 	modified |= ImGui::Checkbox("Copy depth buffers before clear operation", &_preserve_depth_buffers);
@@ -1632,9 +1623,6 @@ void reshade::d3d12::runtime_d3d12::draw_depth_debug_menu(buffer_detection_conte
 
 void reshade::d3d12::runtime_d3d12::update_depth_texture_bindings(com_ptr<ID3D12Resource> texture)
 {
-	if (_has_high_network_activity)
-		texture = nullptr; // Unbind texture
-
 	if (texture == _depth_texture)
 		return;
 

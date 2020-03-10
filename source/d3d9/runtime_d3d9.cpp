@@ -210,7 +210,7 @@ void reshade::d3d9::runtime_d3d9::on_present()
 	_buffer_detection->disable_intz = _disable_intz;
 
 	assert(_depth_clear_index_override != 0);
-	update_depth_texture_bindings(_has_high_network_activity ? nullptr :
+	update_depth_texture_bindings(
 		_buffer_detection->find_best_depth_surface(_filter_aspect_ratio ? _width : 0, _height, _depth_surface_override, _preserve_depth_buffers ? _depth_clear_index_override : 0));
 #endif
 
@@ -1115,15 +1115,6 @@ void reshade::d3d9::runtime_d3d9::render_imgui_draw_data(ImDrawData *draw_data)
 #if RESHADE_DEPTH
 void reshade::d3d9::runtime_d3d9::draw_depth_debug_menu(buffer_detection &tracker)
 {
-	if (!ImGui::CollapsingHeader("Depth Buffers", ImGuiTreeNodeFlags_DefaultOpen))
-		return;
-
-	if (_has_high_network_activity)
-	{
-		ImGui::TextColored(ImColor(204, 204, 0), "High network activity discovered.\nAccess to depth buffers is disabled to prevent exploitation.");
-		return;
-	}
-
 	assert(!_reset_buffer_detection);
 
 	// Do NOT reset tracker within state block capture scope, since it may otherwise bind the replacement depth-stencil after it has been destroyed here
