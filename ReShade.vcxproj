@@ -37,12 +37,12 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0401ADF5-D085-4A3D-95B2-D9B7896BB338}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Platform)'=='Win32'">
     <TargetName>ReShade32</TargetName>
@@ -273,7 +273,8 @@
       <PreprocessorDefinitions>WIN64;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <PreBuildEvent>
-      <Command>tools\verbuild res\version.h *.*.*.+ -xFP -b0.0.0.0 -s</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>if exist "res\sign.pfx" signtool sign /f "res\sign.pfx" /t http://timestamp.verisign.com/scripts/timstamp.dll "$(TargetPath)"</Command>
@@ -474,7 +475,13 @@
     <None Include="res\exports.def" />
     <None Include="res\layers\ReShade32.json" />
     <None Include="res\layers\ReShade64.json" />
-    <None Include="res\resource.rc2" />
+    <None Include="res\shaders\copy_ps.cso" />
+    <None Include="res\shaders\fullscreen_vs.cso" />
+    <None Include="res\shaders\imgui_ps.cso" />
+    <None Include="res\shaders\imgui_ps.spv" />
+    <None Include="res\shaders\imgui_vs.cso" />
+    <None Include="res\shaders\imgui_vs.spv" />
+    <None Include="res\shaders\mipmap_cs.cso" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="res\shaders\copy_ps.hlsl">
