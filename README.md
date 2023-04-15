@@ -1,7 +1,7 @@
 Gw2Hook (DX11)
 ===
 
-This project aims to port [Gw2Hook](https://github.com/04348/Gw2Hook) to DX11. I don't have any idea whether this will actually work out.
+This project aims to port [Gw2Hook](https://github.com/04348/Gw2Hook) to DX11 using the most up-to-date [ReShade](https://github.com/crosire/reshade) version. I don't have any idea whether this will actually work out.
 
 ## License
 
